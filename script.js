@@ -17,8 +17,6 @@ document.addEventListener("DOMContentLoaded",function(){
     console.log("scrolled");
   });
   slidegroup.addEventListener("wheel", function(evt){
-    console.log(currentScroll);
-
     const selectCurrent = function(target){
       const current = document.getElementsByClassName("current")[0];
       if(current && current!=target) current.classList.remove("current");

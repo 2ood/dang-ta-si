@@ -2,5 +2,6 @@
     font-family: 'Nanum Pen Script';
     font-style: normal;
     font-weight: 600;
+    font-display: fallback;
     src: url(font/NanumPenScript-Regular.woff) format("woff");
 }
