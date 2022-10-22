@@ -10,28 +10,34 @@ const current_lang = document.getElementsByTagName('html')[0].getAttribute("lang
 
 let currentScroll = 0;
 const maxScroll=window.innerHeight*(slides.length-0.5);
-console.log(maxScroll);
+let seen_til = 1;
 
 document.addEventListener("DOMContentLoaded",function(){
-  document.addEventListener("scroll",(evt)=>{
-    console.log("scrolled");
-  });
   slidegroup.addEventListener("wheel", function(evt){
-    const selectCurrent = function(target){
-      const current = document.getElementsByClassName("current")[0];
-      if(current && current!=target) current.classList.remove("current");
-
-      target.classList.add("current");
-    }
-
     if((currentScroll<maxScroll && evt.deltaY>0)||(currentScroll>0 && evt.deltaY<0) ) {
       currentScroll+=evt.deltaY;
+    }
+    //console.log(`currentscroll is ${currentScroll}`);
+    //console.log(`seen til is ${seen_til}`);
+    const current = document.getElementsByClassName("current")[0];
 
-      if (currentScroll < viewport_height * 0.5) selectCurrent(slides[0]);
-      else if (currentScroll < viewport_height * 1.5) selectCurrent(slides[1]);
-      else if (currentScroll < viewport_height * 2.5) selectCurrent(slides[2]);
-      else if (currentScroll < viewport_height * 3.5) selectCurrent(slides[3]);
-      else if (currentScroll < viewport_height * 4.5) selectCurrent(slides[4]);
+    let new_seen;
+    let flag=false;
+    let newCurrent=0;
+
+    seeing = Math.round((currentScroll)/window.innerHeight)+1;
+    //console.log(`seeing is ${seeing}`);
+    if(seeing > seen_til) {
+      //console.log("changing");
+      seen_til = seeing;
+      switch(seeing){
+        case 1 : break;
+        case 2 : {newCurrent = slides[1]; flag=true; break;}
+        case 3 : {newCurrent = slides[2]; flag=true; break;}
+        case 4 : {newCurrent = slides[3]; flag=true; break;}
+        case 5 : {newCurrent = slides[4]; flag=true; break;}
+      }
+      if(flag) newCurrent.classList.add("seen");
     }
   });
 

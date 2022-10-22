@@ -79,7 +79,13 @@ main > slide {
   min-width : 100%;
   justify-content: center;
   align-items: center;
-  transition : all .5s ease-in-out;
+  opacity : 0;
+  transition : all .3s ease-in-out
+}
+
+slide.seen {
+  opacity : 1;
+  transition : all .3s ease-in-out;
 }
 
 slide.grid-1-2 {
